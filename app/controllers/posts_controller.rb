@@ -3,10 +3,14 @@ class PostsController < ApplicationController
   end
 
    def create
-   	render :text => params[:post].inspect
+   	 @post = Post.new(params[:post])
+ 
+  @post.save
+  redirect_to :action => :show, :id => @post.id
   end
 
    def show
+   	@post = Post.find(params[:id])
   end
 
    def index
@@ -15,7 +19,7 @@ class PostsController < ApplicationController
    def destroy
   end
 
-def edit
+   def edit
   end
 
    def update

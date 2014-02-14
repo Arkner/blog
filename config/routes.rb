@@ -2,6 +2,7 @@ Blog::Application.routes.draw do
   #get "posts/index"
 
   resources :posts
+  get "posts/:id" => "posts#show"
   #get "welcome/index"
 
   # The priority is based upon order of creation:
