@@ -14,14 +14,15 @@ class PostsController < ApplicationController
   end
 end
 
-   def show
-   	@post = Post.find(params[:id])
-  end
+  def show
+  @post = Post.find(params[:id])
+end
 
    def index
   @posts = Post.all
   end
-	def edit
+	
+  def edit
   		@post = Post.find(params[:id])
 	end
 
@@ -33,6 +34,14 @@ end
   				else
     			render 'edit'
  	 	 end
+
 	end
+
+	def destroy
+  @post = Post.find(params[:id])
+  @post.destroy
+ 
+  redirect_to :action => :index
+  end
 
  end
