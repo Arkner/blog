@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
 
   def create
-  @post = Post.new(params[:post])
+ @post = Post.new(params[:post])
  
   if @post.save
     redirect_to :action => :show, :id => @post.id
@@ -43,5 +43,26 @@ end
  
   redirect_to :action => :index
   end
+
+
+      class CreateComments < ActiveRecord::Migration
+  def change
+    create_table :comments do |t|
+      t.string :commenter
+      t.text :body
+      t.references :post
+ 
+      t.timestamps
+    end
+ 
+    add_index :comments, :post_id
+  end
+end
+
+
+class Comment < ActiveRecord::Base
+  belongs_to :post
+end
+
 
  end
